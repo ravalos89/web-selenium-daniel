@@ -8,27 +8,59 @@ public class ConditionalStatements {
 		int velocidad;
 		int limiteVelocidad;
 		boolean esCarretera;
+		boolean esZonaEscolar;
 
 		// Valores reales
 		velocidad = 80; // KM*H
 		limiteVelocidad = 60; // KM*H
-		esCarretera = false;
+		esCarretera = true;
+		esZonaEscolar = false;
 
-		if (esCarretera == true) {
+//		if (esCarretera == true) {
+//			System.out.println("CARRETERA");
+//			limiteVelocidad = 110;
+//
+//			// DISPOSITIVO
+//			if (velocidad > limiteVelocidad) {
+//				System.out.println("MULTA! LIMITE VELOCIDAD EXCEDIDO");
+//			} else {
+//				System.out.println("DESCUENTO TENENCIA!");
+//			}
+//		} else if (velocidad > limiteVelocidad) {
+//			System.out.println("CALLE");
+//			System.out.println("MULTA! LIMITE VELOCIDAD EXCEDIDO");
+//		} else {
+//			System.out.println("DESCUENTO TENENCIA!");
+//		}
+		
+		if(esCarretera==true && esZonaEscolar==true) {
+			System.out.println("ERROR");
+		}else if(esCarretera==true && esZonaEscolar==false) {
 			System.out.println("CARRETERA");
 			limiteVelocidad = 110;
-
 			// DISPOSITIVO
 			if (velocidad > limiteVelocidad) {
 				System.out.println("MULTA! LIMITE VELOCIDAD EXCEDIDO");
 			} else {
 				System.out.println("DESCUENTO TENENCIA!");
 			}
-		} else if (velocidad > limiteVelocidad) {
-			System.out.println("CALLE");
-			System.out.println("MULTA! LIMITE VELOCIDAD EXCEDIDO");
-		} else {
-			System.out.println("DESCUENTO TENENCIA!");
+			
+		}else if(esCarretera==false && esZonaEscolar==true) {
+			System.out.println("ZONA ESCOLAR");
+			limiteVelocidad = 30;
+			// DISPOSITIVO
+			if (velocidad > limiteVelocidad) {
+				System.out.println("MULTA! LIMITE VELOCIDAD EXCEDIDO");
+			} else {
+				System.out.println("DESCUENTO TENENCIA!");
+			}
+		}else {
+			if(velocidad > limiteVelocidad) {
+				System.out.println("CALLE");
+				System.out.println("MULTA! LIMITE VELOCIDAD EXCEDIDO");
+			} else {
+				System.out.println("DESCUENTO TENENCIA!");
+			}
 		}
 
 		// SWITCH
