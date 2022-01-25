@@ -5,7 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class Main {
+import com.java.accessmodifiers.AccessModifier;
+
+public class Main extends AccessModifier{
 
 	public static void main(String[] args) {
 		
@@ -17,12 +19,23 @@ public class Main {
 		System.out.println("¿Como se comunica ahora Ricardo?");
 		ricardo.speak();
 		
-		// Polymorphism WebDriver
-		WebDriver driver = new ChromeDriver();
+//		// Polymorphism WebDriver
+//		WebDriver driver = new ChromeDriver();
+//		
+//		driver = new FirefoxDriver();
+//		
+//		driver.findElement(By.xpath("")).click();
 		
-		driver = new FirefoxDriver();
+		// ACCESS MODIFIER PUBLIC from com.java.accessmodifier
+		AccessModifier publicModifier = new AccessModifier();
+		publicModifier.helloPublic();
 		
-		driver.findElement(By.xpath("")).click();
+		
+//		AccessModifier protectedModifier = new AccessModifier();
+//		protectedModifier.helloProtected();
+//		
+//		AccessModifier protectedDefault = new AccessModifier();
+//		protectedDefault.helloDefault();
 
 	}
 
