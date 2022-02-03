@@ -37,6 +37,16 @@ public class Base {
 	}
 	
 	/*
+	 * Launch browser
+	 */
+	
+	public void launchBrowser(String url) {
+		reporterLog("Launching url..."+ url);
+		driver.get(url);
+		driver.manage().window().maximize();
+		implicitWait(5);
+	}
+	/*
 	 * Reporter TestNG log
 	 */
 	public void reporterLog(String log) {
