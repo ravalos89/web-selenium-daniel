@@ -1,5 +1,7 @@
 package com.opensource.admin.qa;
 
+import java.io.FileNotFoundException;
+
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -17,10 +19,10 @@ public class TC001_Admin_SearchEmployeePOM {
 	Login login;
 	Home home;
 	Admin admin;
-	String username, password;
+	String username, password, country;
 
 	@BeforeTest
-	public void beforeTest() {
+	public void beforeTest() throws FileNotFoundException {
 		 // Instanciando objetos
 		base = new Base(driver);
 		driver = base.chromeDriver();
@@ -28,11 +30,14 @@ public class TC001_Admin_SearchEmployeePOM {
 		home = new Home(driver);
 		admin = new Admin(driver);
 		
-		// Data
-		username="Admin";
-		password="admin123";
+		// Data handling Excel
+//		username= base.getCellData(this.getClass().getSimpleName(), 1, 5);
+//		password= base.getCellData(this.getClass().getSimpleName(), 1, 1);
 		
-
+		// Data Handling Json 
+		username = base.getJSONData(this.getClass().getSimpleName(), "username");
+		password = base.getJSONData(this.getClass().getSimpleName(), "password");
+		country = base.getJSONData(this.getClass().getSimpleName(), "country");
 	}
 
 	@Test
