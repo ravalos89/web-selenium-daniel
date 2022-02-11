@@ -25,8 +25,10 @@ public class Admin extends Base {
 	public void searchUser(String user) {
 		reporterLog("Search username in field Username");
 		type(txtSearchUser, user);
+		screenshot("EnterUser"+user);
 		reporterLog("Click Search");
 		click(btnSearch);
+		screenshot("AfterSearch"+user);
 	}
 	
 	/*
@@ -37,6 +39,7 @@ public class Admin extends Base {
 	public void validateValueinUsernameTable(String expectedValue) {
 		reporterLog("Validate "+expectedValue + " in username table");
 		String getActualValue= getText(tblUsers);
+		screenshot("ValidateUserTable");
 		Assert.assertEquals(getActualValue, expectedValue);
 	}
 	

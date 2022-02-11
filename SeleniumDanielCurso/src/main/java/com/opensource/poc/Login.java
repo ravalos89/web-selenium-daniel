@@ -30,9 +30,11 @@ public class Login extends Base{
 		reporterLog("Login into Orange app using credentials USERNAME:"+username+ " PASSWORD:"+password);
 		type(txtUsername, username);
 		type(txtPassword, password);
+		screenshot("EnteringCredentials");
 		click(btnLogin);
 		implicitWait(5);
 		waitForElementVisible(btnWelcome);
+		screenshot("LoggedSuccess");
 		reporterLog("User is logged successfully");
 	}
 	
@@ -43,6 +45,7 @@ public class Login extends Base{
 		reporterLog("Logout from Orange app");
 		click(btnWelcome);
 		click(btnlogout);
+		screenshot("LoggedOut");
 		closeBrowser();
 	}
 

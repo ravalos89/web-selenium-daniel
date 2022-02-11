@@ -1,10 +1,13 @@
 package com.opensource.base;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
+
+import javax.imageio.ImageIO;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -22,9 +25,13 @@ import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.asserts.SoftAssert;
 
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+
 public class Base {
 	
 	private WebDriver driver;
+	File fileFolderCreation;
 	
 	/*
 	 * Constructor WebDriver Abstracto (Polymorphism)
@@ -55,6 +62,7 @@ public class Base {
 		reporterLog("Launching url..."+ url);
 		driver.get(url);
 		driver.manage().window().maximize();
+		screenshot("OpenedBrowser");
 		implicitWait(5);
 	}
 	/*
@@ -83,6 +91,7 @@ public class Base {
 	 * click
 	 */
 	public void click(By locator)  {
+		screenshot("click"+locator);
 		driver.findElement(locator).click();	
 	}
 	
@@ -189,6 +198,48 @@ public class Base {
 			e1.printStackTrace();
 			return null;
 		}
+	}
+	
+	/*
+	 * Take screenshot creating new folder
+	 * 
+	 * @author Ricardo Avalos
+	 * @throws IOException
+	 */
+	public String screenshot(String fileName, boolean isTaked){
+		try {
+			if(!fileFolderCreation.exists()) {
+				fileFolderCreation.mkdirs(); // or file.mkdir()
+			}
+			String absolutePath = fileFolderCreation.getAbsolutePath()+"/";
+			String pathFileName= absolutePath + fileName + ".png";
+			Screenshot screenshot = new AShot().takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(), "PNG", new File(pathFileName));
+			return pathFileName;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
+	}
+	
+	/*
+	 * Take screenshot
+	 * 
+	 * @author Ricardo Avalos
+	 * @throws IOException
+	 */
+	public String screenshot(String fileName){
+		try {
+			String pathFileName= GlobalVariables.PATH_SCREENSHOTS + fileName + ".png";
+			Screenshot screenshot = new AShot().takeScreenshot(driver);
+			ImageIO.write(screenshot.getImage(), "PNG", new File(pathFileName));
+			return pathFileName;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+
 	}
 
 }

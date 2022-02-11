@@ -21,6 +21,7 @@ public class Home extends Base{
 	public void clickAdmin() {
 		reporterLog("Clicking Admin...");
 		click(lnkAdmin);
+		screenshot("ClickAdmin");
 		implicitWait(5);
 	}
 	
